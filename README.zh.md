@@ -3,6 +3,11 @@
 #simple custom DatePicker
 -------------
   简单可以定制样式的datePicker
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/1.gif)
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/2.gif)
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/3.gif)
+
+  
 ####Example:  
      
         // 1.创建OEDatePicker对象
@@ -45,7 +50,7 @@
 ### 注意
   当开启上午，下午选择时 如果用户先选择上午下午的datePick 会返回一个错误的时间 
   建议使用24小时制
-  
+### 如遇bug 欢迎反馈帮助我做的更好 and 我的邮箱：pomyven@gmail.com  
   
 
 
