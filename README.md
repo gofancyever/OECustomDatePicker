@@ -2,9 +2,13 @@
 
 #simple custom DatePicker
 -------------
-
+ 
 ####Language
-  [中文](https://github.com/ofEver/OECustomDatePicker/blob/master/README.zh.md)
+  [中文](https://github.com/ofEver/OECustomDatePicker/blob/master/README.zh.md)<br>
+  
+   ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/1.gif)<br>
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/2.gif)<br>
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/3.gif)<br>
   
 ####Example:  
      
