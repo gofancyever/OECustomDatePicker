@@ -4,7 +4,7 @@
 -------------
 
 ####Language
-  [中文](http://example.net/)
+  [中文](https://github.com/ofEver/OECustomDatePicker/blob/master/README.zh.md)
   
 ####Example:  
      
@@ -20,6 +20,9 @@
         datePickerView.delegate = self
         // 6. addSubview
         self.view.addSubview(datePickerView)
+        
+        //delegate
+        func datePickerDelectDate(selectedDate: NSDate?) 
       
 
 
