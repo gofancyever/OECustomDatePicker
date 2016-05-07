@@ -2,10 +2,10 @@
 
 #simple custom DatePicker
 -------------
-  简单可以定制样式的datePicker
-  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/1.gif)
-  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/2.gif)
-  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/3.gif)
+  简单可以定制样式的datePicker<br>
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/1.gif)<br>
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/2.gif)<br>
+  ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/3.gif)<br>
 
   
 ####Example:  
