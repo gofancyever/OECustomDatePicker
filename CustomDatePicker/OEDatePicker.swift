@@ -165,29 +165,29 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
         initailizeMonth()
         initailizeYear()
         
-        pickerViews = [yearDatePicker,monthDatePicker,dayDatePicker,hourDatePicker,minDatePicker,meridianDatePicker]
+        pickerViews = [meridianDatePicker,minDatePicker,hourDatePicker,dayDatePicker,monthDatePicker,yearDatePicker]
         
         if dateModel == .Custom{ return }
 
         if twenthyFourHourMode{
-            pickerViews?.removeLast()
+            pickerViews?.removeFirst()
             self.columnValue = self.columnValue-1
         }
 
         let width = self.frame.size.width/columnValue
-        
+        let viewWidth = self.frame.size.width
         for i in 0..<Int(self.columnValue) {
             let datePickerView: OEPickerTableView = pickerViews![i] as! OEPickerTableView
             datePickerView.delegate = self
             datePickerView.dataSource = self
-            let frame = CGRectMake(CGFloat(i)*width, 0, width, self.frame.size.height)
+            let frame = CGRectMake(viewWidth-CGFloat(i+1)*width, 0, width, self.frame.size.height)
             datePickerView.frame = frame
             self.addSubview(datePickerView)
             
             if datePickerView.arrValue![0] == "上午"{
                 let top = self.frame.size.height*0.5 - datePickerView.rowHeight*0.5
                 datePickerView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0)
-                    return
+                    continue
             }
             let index = NSIndexPath(forRow: 0, inSection: 50)
             datePickerView.selectRowAtIndexPath(index, animated: false, scrollPosition: .Middle)
