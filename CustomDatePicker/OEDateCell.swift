@@ -53,8 +53,6 @@ class OEDateCell: UITableViewCell {
         
         self.addSubview(dateLable!)
         self.addSubview(selectView!)
-        self.backgroundColor = UIColor.clearColor()
-
     }
     
     required init?(coder aDecoder: NSCoder) {

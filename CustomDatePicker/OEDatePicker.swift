@@ -33,6 +33,7 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     var delegate:OEDatePickerDelegate?
         /// Custom yearRange
     var yearRange: NSIndexSet?
+    var dayRange: NSRange?
     
         /// 24 or 12  set before dateModel
     var twenthyFourHourMode: Bool = true
@@ -46,9 +47,8 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     var dateFormat:String = "MMddHHmm"
     
     var dateModel:OEDatePickerOption {
-        get{return self.theDateModel }
+        get{ return self.theDateModel }
         set{
-
             self.theDateModel = newValue
             switch newValue {
             case .YearMonthDayHourMin:
@@ -72,7 +72,7 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     }
     
 
-    private var pickerSource:Array<AnyObject>?
+    private var pickerViews:Array<AnyObject>?
     private var arrYearsText: Array<String> = []
     private var arrMothText: Array<String> = []
     private var arrDaysText: Array<String> = []
@@ -84,7 +84,6 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     
     
     override func drawRect(rect: CGRect) {
-        self.backgroundColor = UIColor.redColor()
         setupDatePicker(self.dateModel)
     }
     
@@ -92,11 +91,18 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     //MARK: initailizeDateSource
     private func initailizeDays() {
         var arrDays: Array<String>= []
-        for i in 1 ... 31 {
-            arrDays.append(String(format: "%02d",i))
+        if dayRange == nil{
+            for i in 1 ... 31 {
+                arrDays.append(String(format: "%02d",i))
+            }
+        } else{
+            for i in self.dayRange!.location...self.dayRange!.length {
+                arrDays.append(String(format: "%02d",i))
+            }
         }
         self.arrDaysText = arrDays
     }
+    
     private func intializeMinutes() {
         var arrMinutes: Array<String>= []
         for i in 0..<60 {
@@ -134,11 +140,22 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     }
     private func initailizeMonth() {
         var arrMonths: Array<String>= []
-        for i in 1...12 {
-            arrMonths.append(String(format: "%02d",i))
+            for i in 1...12 {
+                arrMonths.append(String(format: "%02d",i))
         }
         self.arrMothText = arrMonths
     }
+    
+    
+    
+    lazy var yearDatePicker:OEPickerTableView = OEPickerTableView(arrValue: self.arrYearsText)
+    lazy var monthDatePicker:OEPickerTableView = OEPickerTableView(arrValue: self.arrMothText)
+    lazy var dayDatePicker:OEPickerTableView = OEPickerTableView(arrValue: self.arrDaysText)
+    lazy var hourDatePicker:OEPickerTableView = OEPickerTableView(arrValue: self.arrHourText)
+    lazy var minDatePicker:OEPickerTableView = OEPickerTableView(arrValue: self.arrMinsText)
+    lazy var meridianDatePicker:OEPickerTableView = OEPickerTableView(arrValue: self.arrMeridiansText)
+    
+    
     
       /** load DatePickers */
     func setupDatePicker(dateModel: OEDatePickerOption) {
@@ -148,30 +165,39 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
         initailizeMonth()
         initailizeYear()
         
-        pickerSource = [arrMeridiansText, arrMinsText,arrHourText,arrDaysText,arrMothText,arrYearsText]
+        pickerViews = [yearDatePicker,monthDatePicker,dayDatePicker,hourDatePicker,minDatePicker,meridianDatePicker]
         
         if dateModel == .Custom{ return }
-        let datePickerWidth = self.frame.size.width
 
         if twenthyFourHourMode{
-            pickerSource?.removeFirst()
+            pickerViews?.removeLast()
             self.columnValue = self.columnValue-1
         }
 
         let width = self.frame.size.width/columnValue
         
         for i in 0..<Int(self.columnValue) {
-            let arrValue = pickerSource![i]
-            let datePicker = OEPickerTableView(frame: CGRectMake(datePickerWidth-CGFloat(i+1)*width, 0, width, self.frame.size.height), arrValue: arrValue as! [String], delegate: self, dataSource: self)
-            datePicker.tag = i
-            self.addSubview(datePicker)
+            let datePickerView: OEPickerTableView = pickerViews![i] as! OEPickerTableView
+            datePickerView.delegate = self
+            datePickerView.dataSource = self
+            let frame = CGRectMake(CGFloat(i)*width, 0, width, self.frame.size.height)
+            datePickerView.frame = frame
+            self.addSubview(datePickerView)
+            
+            if datePickerView.arrValue![0] == "上午"{
+                let top = self.frame.size.height*0.5 - datePickerView.rowHeight*0.5
+                datePickerView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0)
+                    return
+            }
+            let index = NSIndexPath(forRow: 0, inSection: 50)
+            datePickerView.selectRowAtIndexPath(index, animated: false, scrollPosition: .Middle)
         }
     }
     
     //MARK: Delegate DateSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         let oeDatePicker = tableView as! OEPickerTableView
-        if oeDatePicker.arrValue![0] == "上午" {
+        if oeDatePicker == self.meridianDatePicker {
             return 1
         }
         return 100
@@ -180,9 +206,9 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let oePickerView = tableView as! OEPickerTableView
         return (oePickerView.arrValue?.count)!
+
     }
     
-    private let id = "cell"
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let id = "cell"
@@ -228,7 +254,6 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     private var month:String = ""
     private var year:String = ""
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let oeDatePicker = tableView as! OEPickerTableView
@@ -239,67 +264,87 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
         let cell = oeDatePicker.cellForRowAtIndexPath(indexPath) as! OEDateCell
         cell.selected = true
                 /// AM or PM Cell
-        
+
         if oeDatePicker.arrValue![0] == "上午" {
             if indexPath.row == 0 {
-                let top = self.frame.size.height*0.5 - 30
+                let top = self.frame.size.height*0.5 - cell.frame.size.height*0.5
                 oeDatePicker.contentInset = UIEdgeInsetsMake(top, 0, 0, 0)
 
             }else{
-            let top = self.frame.size.height*0.5 - 90
+            let top = self.frame.size.height*0.5 - cell.frame.size.height*1.5
                 oeDatePicker.contentInset = UIEdgeInsetsMake(top, 0, 0, 0)
             }
         }
         
         tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.Middle)
+        
         lastIndexPath = indexPath
         
         let fmt = NSDateFormatter()
         fmt.dateFormat = self.dateFormat
         
-        getDate(oeDatePicker.tag, cell: cell)
+        getDate(oeDatePicker, cell: cell)
         
         dateText = "\(year)\(month)\(day)\(hour)\(min)\(meridian)"
-//        print(dateText)
+        print(dateText)
         let pickerDate = fmt.dateFromString(dateText!)
         self.delegate?.datePickerDelectDate(pickerDate)
-    
+        
+        // 计算日期
+        if oeDatePicker == monthDatePicker {
+            //计算月份
+            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+            let dateCom = NSDateComponents()
+            
+            dateCom.month = Int((cell.dateLable?.text)!)!
+            let twoMonthDate = calendar?.dateFromComponents(dateCom)
+            let unitM: NSCalendarUnit = [.Month]
+            let dayIndex = calendar!.rangeOfUnit(.Day, inUnit: unitM, forDate: twoMonthDate!)
+            self.dayRange = dayIndex
+            initailizeDays()
+            self.dayDatePicker.arrValue = self.arrDaysText
+            self.dayDatePicker.reloadData()
+
+        }
         
     }
     
     
-    private func getDate(tag:Int,cell:OEDateCell){
+    private func getDate(datePicker:OEPickerTableView,cell:OEDateCell){
         if self.twenthyFourHourMode {
-            switch tag {
-            case 0:
+            if datePicker == minDatePicker{
                 min = cell.dateText!
-            case 1:
+            }
+            if datePicker == hourDatePicker{
                 hour = cell.dateText!
-            case 2:
+            }
+            if datePicker == dayDatePicker{
                 day = cell.dateText!
-            case 3:
+            }
+            if datePicker == monthDatePicker{
                 month = cell.dateText!
-            case 4:
+            }
+            if datePicker == yearDatePicker{
                 year = cell.dateText!
-            default:
-                break
             }
         }else{
-            switch tag {
-            case 0:
+            if datePicker == meridianDatePicker{
                 meridian = cell.dateText!
-            case 1:
+            }
+            if datePicker == minDatePicker{
                 min = cell.dateText!
-            case 2:
+            }
+            if datePicker == hourDatePicker{
                 hour = cell.dateText!
-            case 3:
+            }
+            if datePicker == dayDatePicker{
                 day = cell.dateText!
-            case 4:
+            }
+            if datePicker == monthDatePicker{
                 month = cell.dateText!
-            case 5:
+            }
+            if datePicker == yearDatePicker{
                 year = cell.dateText!
-            default:
-                break
             }
         }
     }
@@ -311,39 +356,23 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
 class OEPickerTableView: UITableView {
     
     var arrValue: Array<String>?
-    override func drawRect(rect: CGRect) {
-        
-    }
-    
-    convenience init(frame: CGRect,arrValue:[String],delegate: UITableViewDelegate,dataSource:UITableViewDataSource){
-        self.init(frame: frame, style: .Plain)
+    convenience init(arrValue:[String]){
+        self.init()
         self.arrValue = arrValue
-        self.delegate = delegate
-        self.dataSource = dataSource
-        if arrValue[0] == "上午" {
-            let top = self.frame.size.height*0.5 - 30
-            self.contentInset = UIEdgeInsetsMake(top, 0, 0, 0)
-            return
-        }
-        let index = NSIndexPath(forRow: 0, inSection: 50)
-        self.selectRowAtIndexPath(index, animated: true, scrollPosition: .Middle)
-//        self.scrollToRowAtIndexPath(index, atScrollPosition: .Middle, animated: true)
-        
 
     }
     override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
+        super.init(frame: frame, style: UITableViewStyle.Plain)
         self.rowHeight = 60
         self.showsVerticalScrollIndicator = false
         self.scrollEnabled = true
         self.userInteractionEnabled = true
         self.separatorStyle = .None
-    }
+        }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 
