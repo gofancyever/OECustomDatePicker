@@ -23,7 +23,6 @@ protocol OEDatePickerDelegate {
 class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
     
     //picker Custom Style
-    var cellDateTextColor:UIColor?
     var cellDateBackgroundColor:UIColor?
     var cellDateTextFontSize:CGFloat?
     var cellSelectViewColor:UIColor?
@@ -216,9 +215,6 @@ class OEDatePicker: UIView,UITableViewDataSource,UITableViewDelegate{
         if cell==nil {
             cell = OEDateCell(style: .Default, reuseIdentifier: id)
         }
-        if cellDateTextColor != nil {
-            cell!.dateLable?.textColor = cellDateTextColor
-        }
         if cellDateBackgroundColor != nil {
             cell!.dateLable?.backgroundColor = cellDateBackgroundColor
         }
@@ -359,6 +355,7 @@ class OEPickerTableView: UITableView {
     convenience init(arrValue:[String]){
         self.init()
         self.arrValue = arrValue
+        self.backgroundColor = UIColor.clearColor()
 
     }
     override init(frame: CGRect, style: UITableViewStyle) {

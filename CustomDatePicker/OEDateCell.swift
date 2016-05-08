@@ -19,7 +19,7 @@ class OEDateCell: UITableViewCell {
     }
     
     
-     var dateLable:UILabel?
+    var dateLable:UILabel?
      var selectView:UIView?
     override var selected: Bool {
         get{
@@ -49,10 +49,11 @@ class OEDateCell: UITableViewCell {
         dateLable?.font = UIFont.boldSystemFontOfSize(17)
         dateLable?.textColor = cellTextDefaultColor
         
-        selectView?.backgroundColor = UIColor.blueColor()
+        selectView?.backgroundColor = UIColor.whiteColor()
         
+        dateLable?.addSubview(selectView!)
         self.addSubview(dateLable!)
-        self.addSubview(selectView!)
+//        self.addSubview(selectView!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +65,7 @@ class OEDateCell: UITableViewCell {
         
         let selectViewH:CGFloat = 2
         let labelW = self.frame.size.width
-        let labelH = self.frame.size.height-selectViewH
+        let labelH = self.frame.size.height
         
         dateLable!.frame = CGRectMake(0, 0,labelW,labelH)
         selectView!.frame.size = CGSizeMake(labelW-labelW*0.4, selectViewH)
