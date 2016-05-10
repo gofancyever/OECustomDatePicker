@@ -15,3 +15,9 @@ if a === b {
 }else{
     print("d")
 }
+
+
+var c = [1,2]
+var d = c.map { f in
+    "\(f)?"
+}

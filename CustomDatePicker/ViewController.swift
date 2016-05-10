@@ -15,8 +15,8 @@ class ViewController: UIViewController ,OEDatePickerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.creatDatePicker()
-//        self.creatCustomPicker()
+//        self.creatDatePicker()
+        self.creatCustomPicker()
         
         
     
@@ -60,7 +60,7 @@ class ViewController: UIViewController ,OEDatePickerDelegate{
         
     }
     // return selectedDate when datePicker select all
-    func datePickerDelectDate(selectedDict: Dictionary<OEPickerTableView, String?>, selectedDate: NSDate?) {
+    func datePickerDelectDate(selectedDict: Dictionary<String, String?>, selectedDate: NSDate?) {
         let fmt = NSDateFormatter()
         fmt.dateFormat = "yyyy-MMM-dd hh:mm aa"
         if (selectedDate != nil){
