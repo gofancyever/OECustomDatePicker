@@ -9,6 +9,7 @@
    ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/1.gif)<br>
   ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/2.gif)<br>
   ![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/3.gif)<br>
+![](https://github.com/ofEver/OECustomDatePicker/blob/master/ScreenShots/4.gif)<br>
   
 ####Example:  
      
@@ -27,7 +28,6 @@
         
         //delegate
         func datePickerDelectDate(selectedDate: NSDate?) 
-      
 
 
 ###custom style
@@ -44,7 +44,7 @@
     YearMonthDayHourMin<br>
     MonthDayHourMin<br>
     HourMin<br>
-    Custom // enable <br>
+    Custom <br>
     
 ### How to use
   Copy and paste OEDatePicker.swift ,OEDateCell.swift folder in your Xcode project.
@@ -56,7 +56,7 @@
   
 
 ###TODO
-  custom function
+  update add Custom picker Source
 
 
 
