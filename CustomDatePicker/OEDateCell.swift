@@ -49,7 +49,7 @@ class OEDateCell: UITableViewCell {
         dateLable?.font = UIFont.boldSystemFontOfSize(17)
         dateLable?.textColor = cellTextDefaultColor
         
-        selectView?.backgroundColor = UIColor.whiteColor()
+        selectView?.backgroundColor = UIColor.blueColor()
         
         dateLable?.addSubview(selectView!)
         self.addSubview(dateLable!)

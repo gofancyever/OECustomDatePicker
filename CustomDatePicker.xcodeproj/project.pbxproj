@@ -51,6 +51,7 @@
 		18FD7A4F1CD9EB08009FD835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18FD7A5B1CD9EBF7009FD835 /* OEDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OEDatePicker.swift; sourceTree = "<group>"; };
 		18FD7A5E1CDA1EBA009FD835 /* OEDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OEDateCell.swift; sourceTree = "<group>"; };
+		18FD7B321CE1CDEA009FD835 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 		18FD7A211CD9EB07009FD835 = {
 			isa = PBXGroup;
 			children = (
+				18FD7B321CE1CDEA009FD835 /* MyPlayground.playground */,
 				18FD7A2C1CD9EB07009FD835 /* CustomDatePicker */,
 				18FD7A411CD9EB08009FD835 /* CustomDatePickerTests */,
 				18FD7A4C1CD9EB08009FD835 /* CustomDatePickerUITests */,
@@ -502,6 +504,7 @@
 				18FD7A541CD9EB08009FD835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18FD7A551CD9EB08009FD835 /* Build configuration list for PBXNativeTarget "CustomDatePickerTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +513,7 @@
 				18FD7A571CD9EB08009FD835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18FD7A581CD9EB08009FD835 /* Build configuration list for PBXNativeTarget "CustomDatePickerUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +522,7 @@
 				18FD7A5A1CD9EB08009FD835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
