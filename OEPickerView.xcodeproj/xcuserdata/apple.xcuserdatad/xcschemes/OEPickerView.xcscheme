@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18FD7A291CD9EB07009FD835"
-               BuildableName = "CustomDatePicker.app"
-               BlueprintName = "CustomDatePicker"
-               ReferencedContainer = "container:CustomDatePicker.xcodeproj">
+               BlueprintIdentifier = "189EF0861CE5FE0D009961B5"
+               BuildableName = "OEPickerView.app"
+               BlueprintName = "OEPickerView"
+               ReferencedContainer = "container:OEPickerView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18FD7A3D1CD9EB08009FD835"
-               BuildableName = "CustomDatePickerTests.xctest"
-               BlueprintName = "CustomDatePickerTests"
-               ReferencedContainer = "container:CustomDatePicker.xcodeproj">
+               BlueprintIdentifier = "189EF09A1CE5FE0D009961B5"
+               BuildableName = "OEPickerViewTests.xctest"
+               BlueprintName = "OEPickerViewTests"
+               ReferencedContainer = "container:OEPickerView.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18FD7A481CD9EB08009FD835"
-               BuildableName = "CustomDatePickerUITests.xctest"
-               BlueprintName = "CustomDatePickerUITests"
-               ReferencedContainer = "container:CustomDatePicker.xcodeproj">
+               BlueprintIdentifier = "189EF0A51CE5FE0D009961B5"
+               BuildableName = "OEPickerViewUITests.xctest"
+               BlueprintName = "OEPickerViewUITests"
+               ReferencedContainer = "container:OEPickerView.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18FD7A291CD9EB07009FD835"
-            BuildableName = "CustomDatePicker.app"
-            BlueprintName = "CustomDatePicker"
-            ReferencedContainer = "container:CustomDatePicker.xcodeproj">
+            BlueprintIdentifier = "189EF0861CE5FE0D009961B5"
+            BuildableName = "OEPickerView.app"
+            BlueprintName = "OEPickerView"
+            ReferencedContainer = "container:OEPickerView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18FD7A291CD9EB07009FD835"
-            BuildableName = "CustomDatePicker.app"
-            BlueprintName = "CustomDatePicker"
-            ReferencedContainer = "container:CustomDatePicker.xcodeproj">
+            BlueprintIdentifier = "189EF0861CE5FE0D009961B5"
+            BuildableName = "OEPickerView.app"
+            BlueprintName = "OEPickerView"
+            ReferencedContainer = "container:OEPickerView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18FD7A291CD9EB07009FD835"
-            BuildableName = "CustomDatePicker.app"
-            BlueprintName = "CustomDatePicker"
-            ReferencedContainer = "container:CustomDatePicker.xcodeproj">
+            BlueprintIdentifier = "189EF0861CE5FE0D009961B5"
+            BuildableName = "OEPickerView.app"
+            BlueprintName = "OEPickerView"
+            ReferencedContainer = "container:OEPickerView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

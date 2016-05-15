@@ -10,48 +10,76 @@
   
 ####Example:  
      
-        // 1.创建OEDatePicker对象
-        let datePickerView = OEDatePicker()
-        // 2, 设置24小时值 默认为24小时
-        datePickerView.twenthyFourHourMode = false
-        // 3. 设置时间显示模式 设置24小时制需要再次之前设置
-        datePickerView.dateModel = OEDatePickerOption.YearMonthDayHourMin
-        // 4.set pickerView frame
-        datePickerView.frame = CGRectMake(0, 300, self.view.bounds.size.width, 200)
-        // 5. set delegate
-        datePickerView.delegate = self
-        // 6. addSubview
-        self.view.addSubview(datePickerView)
-        //通过代理返回所选时间 当时间全部选中才会返回
-        func datePickerDelectDate(selectedDate: NSDate?) 
-      
+##DatePickerView
+
+        // 1 自定义样式（可选）
+        let theme = Theme(pickerCellBackgroundColor: UIColor.whiteColor(), pickerSelectedColor: UIColor.redColor(), pickerCellTextDefaultColor: UIColor.grayColor(), pickerCellTextHeighlightColor: UIColor.yellowColor(), pickercellTextFontSize: 17)
+
+        // 2 创建OEPickerView对象
+        let pickerView = OEPickerView()
+
+        // 3 设置样式
+        pickerView.theme = theme
+
+        // 4 设置代理和数据源
+        pickerView.delegate = self
+
+        // 4.1 使用时间选择器需要先创建 OEDatePicker 对象
+        let dateDataSource = OEDatePicker(OEDatePickerModal: OEDatePickerOption.HourMin, twenthyFourHourMode: true)
+
+        // 4.2 设置 OEDatePicker对象 为 pickerView的dataSource
+        pickerView.dataSource = dateDataSource
+
+        // 当数据源是OEDatePicker 对象时设个代理用来返回时间
+        func pickerView(selectDate date: NSDate) {
+            print(date)
+        }
+
+
+
+##自定义picker数据
+
+        //创建数据
+        let color = ["red","yellow","blue","green","e..."]
+        let num = ["1","2","3","4","5"]
+        arr = [color,num]
+
+        // 1 creat pickerView
+        let pickerView = OEPickerView()
+
+        // 2 set delegate and dataSource
+        pickerView.delegate = self
+
+        // 3 set dataSource is self need 
+        pickerView.dataSource = self
+
+
+        //自定义数据需要实现这两个dataSource 方法
+
+        func pickerViewNumberOfColumns() -> Int {
+        return arr.count
+        }
+
+        /** pickerTableView dataSource need an array of data in each row  */
+        func pickerViewForColumnSource(indexPath: NSIndexPath) -> Array<AnyObject>{
+        return arr[indexPath.section] as! Array<AnyObject>
+        }
+
+
+
+        //自定义数据 用这个代理接受选择的indexpath
+        func pickerView(pickerView: OEPickerTableView?, didSelectPickerViewRowAtIndexPath indexPath: NSIndexPath) {
+
+}
 
 
 ### 可定制的样式
-- A <br>
-    //picker Custom Style<br>
-    cellDateTextColor<br>
-    cellDateBackgroundColor<br>
-    cellDateTextFontSize<br>
-    cellSelectViewColor<br>
-    cellTextDefaultColor<br>
-    cellTextheighlightColor<br>
-
-- B<br> 时间显示模式
-    YearMonthDayHourMin<br>
-    MonthDayHourMin<br>
-    HourMin<br>
-    Custom // enable <br>
-    
 ### How to use
 
-  直接将 OEDatePicker.swift ,OEDateCell.swift 复制到你的工程即可
+  直接将 OEPickerView.swift ,OEDatePicker.swift ,OEPickerCell.swift  复制到你的工程即可
 
-### 注意
-  当开启上午，下午选择时 如果用户先选择上午下午的datePick 会返回一个错误的时间 
-  建议使用24小时制
 ### 更新
-    增加了自定义数据功能
+   重构使用代理接受自定义数据
 ### 如遇bug 欢迎反馈帮助我做的更好 and 我的邮箱：pomyven@gmail.com  
   
 

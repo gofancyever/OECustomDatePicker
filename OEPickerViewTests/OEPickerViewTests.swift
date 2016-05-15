@@ -1,15 +1,15 @@
 //
-//  CustomDatePickerTests.swift
-//  CustomDatePickerTests
+//  OEPickerViewTests.swift
+//  OEPickerViewTests
 //
-//  Created by apple on 16/5/4.
+//  Created by apple on 16/5/13.
 //  Copyright © 2016年 Gaooof. All rights reserved.
 //
 
 import XCTest
-@testable import CustomDatePicker
+@testable import OEPickerView
 
-class CustomDatePickerTests: XCTestCase {
+class OEPickerViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
