@@ -14,6 +14,7 @@
 ####Example: 
 
 ##DatePickerView
+
         // 1 custom theme
         let theme = Theme(pickerCellBackgroundColor: UIColor.whiteColor(), pickerSelectedColor: UIColor.redColor(), pickerCellTextDefaultColor: UIColor.grayColor(), pickerCellTextHeighlightColor: UIColor.yellowColor(), pickercellTextFontSize: 17)
 
@@ -75,8 +76,8 @@
          
 
 
-###custom style: Creat Theme Object and set 
-###DatePicker : Creat OEDatePicker Object and set pickerView dataSource   
+####custom style: Creat Theme()  
+####DatePicker : Creat OEDatePicker() 
 
 ### How to use
   Copy and paste OEPickerView.swift ,OEDatePicker.swift ,OEPickerCell.swift folder in your Xcode project.
